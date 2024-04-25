@@ -14,7 +14,7 @@ app.use(express.static("public"));
 
 // add routes
 const router = require("./src/routes/router");
-app.use("/api/pladi", router);
+app.use("/api/inci", router);
 
 // run server
 const server = app.listen(PORT, HOST, () => {
