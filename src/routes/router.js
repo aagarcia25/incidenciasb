@@ -16,6 +16,7 @@ const {
   getPrioridad,
   getEstadoNext,
   getSLA,
+  getEstadisticas,
 } = require("../controllers/Select.js");
 const {
   createConfiguracion,
@@ -83,6 +84,10 @@ router.get("/SelectEstadoNext", (req, res) => {
 
 router.get("/getSLA", (req, res) => {
   getSLA(req, res);
+});
+
+router.get("/getEstadisticas", (req, res) => {
+  getEstadisticas(req, res);
 });
 
 module.exports = router;
