@@ -11,7 +11,7 @@ const db_config = {
   host: "10.200.4.161",
   user: "root",
   database: "INCI",
-  password: "root",
+  password: "Pxq7KbTxDnvY6",
 };
 let db_connect;
 
