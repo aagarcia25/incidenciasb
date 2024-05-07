@@ -12,6 +12,10 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static("public"));
 
+// Aumentar el límite del tamaño permitido
+app.use(express.json({ limit: "10mb" })); // Puedes ajustar el límite según tus necesidades
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
+
 // add routes
 const router = require("./src/routes/router");
 app.use("/api/inci", router);
