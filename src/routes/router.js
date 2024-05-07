@@ -15,6 +15,7 @@ const {
   getUsuarioInci,
   getPrioridad,
   getEstadoNext,
+  getSLA,
 } = require("../controllers/Select.js");
 const {
   createConfiguracion,
@@ -78,6 +79,10 @@ router.get("/SelectPrioridad", (req, res) => {
 
 router.get("/SelectEstadoNext", (req, res) => {
   getEstadoNext(req, res);
+});
+
+router.get("/getSLA", (req, res) => {
+  getSLA(req, res);
 });
 
 module.exports = router;
