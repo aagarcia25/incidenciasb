@@ -8,10 +8,10 @@ const mysql = require("mysql2");
 // };
 
 const db_config = {
-  host: "10.200.4.161",
-  user: "root",
+  host: "10.210.26.27",
+  user: "pladi",
   database: "INCI",
-  password: "Pxq7KbTxDnvY6",
+  password: "xQRA0xBC87Gs",
 };
 let db_connect;
 
