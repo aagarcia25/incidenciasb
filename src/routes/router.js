@@ -9,6 +9,8 @@ const {
   editarIncidencias,
   getHistorial,
   getIncidenciasbyuser,
+  getIncidenciasCanceladas,
+  getIncidenciasResueltas,
 } = require("../controllers/Incidencias.js");
 const {
   getEstado,
@@ -24,6 +26,7 @@ const {
   getConfiguraciones,
   editarConfiguracion,
 } = require("../controllers/Configuracion.js");
+const { sendEmail } = require("../controllers/Mail.js");
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -46,6 +49,15 @@ router.get("/Incidencias", (req, res) => {
 router.get("/Incidenciasbyuser", (req, res) => {
   getIncidenciasbyuser(req, res);
 });
+
+router.get("/getIncidenciasCanceladas", (req, res) => {
+  getIncidenciasCanceladas(req, res);
+});
+
+router.get("/getIncidenciasResueltas", (req, res) => {
+  getIncidenciasResueltas(req, res);
+});
+
 router.put("/Incidencias", (req, res) => {
   editarIncidencias(req, res);
 });
@@ -88,6 +100,10 @@ router.get("/getSLA", (req, res) => {
 
 router.get("/getEstadisticas", (req, res) => {
   getEstadisticas(req, res);
+});
+
+router.get("/sendEmail", (req, res) => {
+  sendEmail(req, res);
 });
 
 module.exports = router;

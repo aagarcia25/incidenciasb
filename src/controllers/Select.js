@@ -88,7 +88,6 @@ module.exports = {
   getEstadoNext: async (req, res) => {
     try {
       const TIPO = req.query.TIPO;
-      console.log(TIPO);
       const result = await utils.executeQuery("CALL sp_ListaEstadoNext(?)", [
         TIPO,
       ]);
@@ -119,7 +118,6 @@ module.exports = {
   getSLA: async (req, res) => {
     try {
       const CHID = req.query.CHID;
-      console.log(CHID);
       const result = await utils.executeQuery("CALL sp_SLA(?)", [CHID]);
       if (result.length > 2) {
         const data = result;
