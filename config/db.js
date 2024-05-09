@@ -1,17 +1,10 @@
 const mysql = require("mysql2");
 
-// const db_config = {
-//   host: "database",
-//   user: "pladiuser",
-//   database: "PLADI",
-//   password: "pladipassword",
-// };
-
 const db_config = {
-  host: "10.210.26.27",
-  user: "pladi",
-  database: "INCI",
-  password: "xQRA0xBC87Gs",
+  host: process.env.APP_DB_HOST,
+  user: process.env.APP_DB_USER,
+  database: process.env.APP_DB_DATABASE,
+  password: process.env.APP_DB_PASSWORD,
 };
 let db_connect;
 
