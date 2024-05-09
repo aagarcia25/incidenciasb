@@ -11,7 +11,7 @@ RUN npm install -g nodemon && npm install
 
 
 # Expón el puerto en el que tu aplicación escucha
-EXPOSE 8585
+EXPOSE 3005
 
 # Comando para ejecutar la aplicación
 CMD ["sh", "-c", "npm start"]
