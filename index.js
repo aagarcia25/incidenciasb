@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 dotenv.config();
 
 // set up port
-const PORT = 8585;
+const PORT = 3005;
 const HOST = "0.0.0.0";
 app.use(express.json());
 app.use(cors());
