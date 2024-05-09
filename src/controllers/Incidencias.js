@@ -3,11 +3,17 @@ const utils = require("../utils/responseBuilder.js");
 module.exports = {
   createIncidencias: async (req, res) => {
     try {
-      const { Estatus, TextoInc, NombreRegistra, EmailRegistra, IdUsuario } =
-        req.body;
+      const {
+        Estatus,
+        TextoInc,
+        NombreRegistra,
+        EmailRegistra,
+        IdUsuario,
+        ID,
+      } = req.body;
       const result = await utils.executeQuery(
-        "CALL sp_CrearIncidencia(?,?,?,?,?)",
-        [Estatus, TextoInc, NombreRegistra, EmailRegistra, IdUsuario]
+        "CALL sp_CrearIncidencia(?,?,?,?,?,?)",
+        [Estatus, TextoInc, NombreRegistra, EmailRegistra, IdUsuario, ID]
       );
 
       if (result.length > 2) {
