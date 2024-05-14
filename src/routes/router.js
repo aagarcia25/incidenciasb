@@ -25,6 +25,7 @@ const {
   deleteConfiguracion,
   getConfiguraciones,
   editarConfiguracion,
+  getParametro,
 } = require("../controllers/Configuracion.js");
 const { sendEmail } = require("../controllers/Mail.js");
 
@@ -77,6 +78,10 @@ router.get("/Configuracion", (req, res) => {
 });
 router.put("/Configuracion", (req, res) => {
   editarConfiguracion(req, res);
+});
+
+router.post("/getParametro", (req, res) => {
+  getParametro(req, res);
 });
 
 //Select
