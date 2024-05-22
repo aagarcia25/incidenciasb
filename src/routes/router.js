@@ -1,4 +1,5 @@
 const express = require("express");
+const utils = require("../utils/responseBuilder.js");
 const router = express.Router();
 const multer = require("multer");
 const { verify } = require("../controllers/Verify.js");
@@ -29,6 +30,11 @@ const {
   getParametro,
 } = require("../controllers/Configuracion.js");
 const { sendEmail } = require("../controllers/Mail.js");
+
+
+const fs = require('fs');
+const { generatePDF } = require("../controllers/generatePdf.js");
+
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -114,6 +120,42 @@ router.get("/getEstadisticas", (req, res) => {
 
 router.get("/sendEmail", (req, res) => {
   sendEmail(req, res);
+});
+
+router.post('/generate-pdf', async (req, res) => {
+  const data = req.body;
+   console.log("data",data);
+   let arrHistorial = []
+
+   let query = "SELECT ih.Observaciones,ce.Descripcion ceDescripcion,ih.FechaCreacion,getUserName(ih.CreadoPor) modificadopor FROM INCI.IncidenciasHistorial ih LEFT JOIN INCI.CatEstatus ce ON ce.Id= ih.Estatus WHERE idIncidencias = ?"
+   const result = await utils.executeQuery(query,[data.Id], (err,result)=>{
+    console.log("result",result);
+   if(err){
+    res.status(500).send('Error generando el PDF');
+   }
+
+  
+  });
+
+  arrHistorial= result
+
+   try {
+    
+    let historialNotas = arrHistorial.map((obs) => `
+    <p><strong>${new Date(obs.FechaCreacion).toLocaleString('es-ES')} - ${obs.modificadopor}:</strong> ${obs.Observaciones ? obs.Observaciones : 'Sin observaciones'} - ${obs.ceDescripcion}</p>
+  `).join('');
+  console.log("historialNotas",historialNotas);
+    await generatePDF({...data, HistorialObservaciones:historialNotas});
+    const file = fs.readFileSync('reporte.pdf');
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename=report.pdf',
+      'Content-Length': file.length,
+    });
+    res.send(file);
+  } catch (error) {
+    res.status(500).send('Error generando el PDF'+error);
+  }
 });
 
 module.exports = router;
