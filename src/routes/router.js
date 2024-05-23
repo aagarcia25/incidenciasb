@@ -137,7 +137,7 @@ router.post('/generate-pdf', async (req, res) => {
    try {
     
     let historialNotas = arrHistorial.map((obs) => `
-    <p><strong>${new Date(obs.FechaCreacion).toLocaleString('es-ES')} - ${obs.modificadopor}:</strong> ${obs.Observaciones ? obs.Observaciones : 'Sin observaciones'} - ${obs.ceDescripcion}</p>
+    <p><strong>${new Date(obs.FechaCreacion ? obs.FechaCreacion : "").toLocaleString('es-ES')} - ${obs.modificadopor ? obs.modificadopor : ""}:</strong> ${obs.Observaciones ? obs.Observaciones : 'Sin observaciones'} - ${obs.ceDescripcion ? obs.ceDescripcion : ""}</p>
   `).join('');
   console.log("historialNotas",historialNotas);
     await generatePDF({...data, HistorialObservaciones:historialNotas});

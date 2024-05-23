@@ -55,33 +55,33 @@ function generatePDF(data) {
 
         <div class="field">
             <label>Estado Actual de la Incidencia:</label>
-            <span>${data.ceDescripcion}</span>
+            <span>${data.ceDescripcion ? data.ceDescripcion : ""}</span>
         </div>
 
         <div class="field">
             <label>Registrado por:</label>
-            <span>${data.NombreRegistra}</span>
+            <span>${data.NombreRegistra ? data.NombreRegistra : ""}</span>
         </div>
 
         <div class="field">
             <label>Asignado a:</label>
-            <span>${data.asignadoa}</span>
+            <span>${data.asignadoa ? data.asignadoa : ""}</span>
         </div>
 
         <div class="field">
             <label>Prioridad:</label>
-            <span>${data.prDescripcion}</span>
+            <span>${data.prDescripcion ? data.prDescripcion : ""}</span>
         </div>
 
         <div class="field">
             <label>Correo Electrónico del Registrante:</label>
-            <span>${data.EmailRegistra}</span>
+            <span>${data.EmailRegistra ? data.EmailRegistra : ""}</span>
         </div>
 
         <div class="field">
             <label>Descripción de la Incidencia:</label>
             <div class="description">
-                ${data.TextoInc}
+                ${data.TextoInc ? data.TextoInc : ""}
             </div>
         </div>
 
