@@ -12,6 +12,7 @@ const {
   getIncidenciasbyuser,
   getIncidenciasCanceladas,
   getIncidenciasResueltas,
+  getIncidenciasPorValidar,
 } = require("../controllers/Incidencias.js");
 const {
   getEstado,
@@ -63,6 +64,10 @@ router.get("/getIncidenciasCanceladas", (req, res) => {
 
 router.get("/getIncidenciasResueltas", (req, res) => {
   getIncidenciasResueltas(req, res);
+});
+
+router.get("/getIncidenciasPorValidar", (req, res) => {
+  getIncidenciasPorValidar(req, res);
 });
 
 router.put("/Incidencias", (req, res) => {
